@@ -788,6 +788,11 @@ func (r *ImageRef) SetPageDelay(delay []int) error {
 	return vipsImageSetDelay(r.image, data)
 }
 
+// Dzsave export image to tiles
+func (r *ImageRef) Dzsave(filename string) error {
+	return vipsDzsave(r.image, filename)
+}
+
 // Export creates a byte array of the image for use.
 // The function returns a byte array that can be written to a file e.g. via ioutil.WriteFile().
 // N.B. govips does not currently have built-in support for directly exporting to a file.

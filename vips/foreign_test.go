@@ -138,3 +138,18 @@ func Test_DetermineImageType__JP2K(t *testing.T) {
 	imageType := DetermineImageType(buf)
 	assert.Equal(t, ImageTypeJP2K, imageType)
 }
+
+func Test_Dzsave(t *testing.T) {
+	Startup(&Config{})
+
+	buf, err := ioutil.ReadFile(resources + "jpg-24bit-icc-adobe-rgb.jpg")
+	assert.NoError(t, err)
+	assert.NotNil(t, buf)
+
+	img, err := NewImageFromBuffer(buf)
+	assert.NoError(t, err)
+	assert.NotNil(t, img)
+
+	err = vipsDzsave(img.image, resources + "jpg-24bit-icc-adobe-rgb_dz")
+	assert.NoError(t, err)
+}

@@ -540,3 +540,7 @@ SaveParams create_save_params(ImageType outputFormat) {
   params.outputFormat = outputFormat;
   return params;
 }
+
+int dzsave(VipsImage *in, const char *filename) {
+  return vips_dzsave(in, filename);
+}

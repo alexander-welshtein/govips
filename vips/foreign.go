@@ -470,3 +470,17 @@ func vipsSaveToBuffer(params C.struct_SaveParams) ([]byte, error) {
 
 	return buf, nil
 }
+
+func vipsDzsave(in *C.VipsImage, filename string) (error) {
+	incOpCounter("dzsave")
+
+	cFilename := C.CString(filename)
+	defer freeCString(cFilename)
+
+	err := C.dzsave(in, cFilename)
+	if err != 0 {
+		return handleVipsError()
+	}
+
+	return nil
+}
