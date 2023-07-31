@@ -150,6 +150,10 @@ func Test_Dzsave(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, img)
 
-	err = vipsDzsave(img.image, resources + "jpg-24bit-icc-adobe-rgb_dz")
+	p := DzsaveParams{
+		TileSize: 512,
+	}
+
+	err = vipsDzsave(img.image, resources + "jpg-24bit-icc-adobe-rgb_dz", p)
 	assert.NoError(t, err)
 }

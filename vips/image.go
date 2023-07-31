@@ -789,8 +789,8 @@ func (r *ImageRef) SetPageDelay(delay []int) error {
 }
 
 // Dzsave export image to tiles
-func (r *ImageRef) Dzsave(filename string) error {
-	return vipsDzsave(r.image, filename)
+func (r *ImageRef) Dzsave(filename string, params DzsaveParams) error {
+	return vipsDzsave(r.image, filename, params)
 }
 
 // Export creates a byte array of the image for use.

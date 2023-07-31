@@ -471,13 +471,20 @@ func vipsSaveToBuffer(params C.struct_SaveParams) ([]byte, error) {
 	return buf, nil
 }
 
-func vipsDzsave(in *C.VipsImage, name string) (error) {
+type DzsaveParams struct {
+	TileSize int
+}
+
+func vipsDzsave(in *C.VipsImage, name string, params DzsaveParams) (error) {
 	incOpCounter("dzsave")
 
 	cName := C.CString(name)
 	defer freeCString(cName)
 
-	err := C.dzsave(in, cName)
+	p := C.create_dzsave_params()
+	p.tileSize = C.int(params.TileSize)
+
+	err := C.dzsave(in, cName, &p)
 	if err != 0 {
 		return handleVipsError()
 	}

@@ -541,6 +541,16 @@ SaveParams create_save_params(ImageType outputFormat) {
   return params;
 }
 
-int dzsave(VipsImage *in, const char *name) {
-  return vips_dzsave(in, name, NULL);
+static DzsaveParams defaultDzsaveParams = {
+  .tileSize = 256,
+};
+
+DzsaveParams create_dzsave_params() {
+  DzsaveParams params = defaultDzsaveParams;
+
+  return params;
+}
+
+int dzsave(VipsImage *in, const char *name, DzsaveParams *params) {
+  return vips_dzsave(in, name, "tile_size", params->tileSize, NULL);
 }

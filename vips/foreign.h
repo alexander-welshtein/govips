@@ -128,5 +128,11 @@ typedef struct SaveParams {
 
 SaveParams create_save_params(ImageType outputFormat);
 int save_to_buffer(SaveParams *params);
-int dzsave(VipsImage *in, const char *name);
+
+typedef struct DzsaveParams {
+  int tileSize;
+} DzsaveParams;
+
+DzsaveParams create_dzsave_params();
+int dzsave(VipsImage *in, const char *name, DzsaveParams *params);
 
