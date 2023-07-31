@@ -541,6 +541,6 @@ SaveParams create_save_params(ImageType outputFormat) {
   return params;
 }
 
-int dzsave(VipsImage *in, const char *filename) {
-  return vips_dzsave(in, filename);
+int dzsave(VipsImage *in, const char *name) {
+  return vips_dzsave(in, name, NULL);
 }
